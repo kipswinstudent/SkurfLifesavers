@@ -9,7 +9,7 @@ public class SwimmerController : MonoBehaviour {
 	float terminus;
 	public float swimSpeed = 1;
 	public GameObject DrowningSwimmer;
-
+	bool swimAngleNeg = true;
 
 	SpriteRenderer ThisSR;
 
@@ -26,6 +26,7 @@ public class SwimmerController : MonoBehaviour {
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
 			transform.localScale = tempScale;
+			swimAngleNeg = false;
 		}
 		Vector3 temp = transform.position;
 		temp.x = StartPoint;
@@ -56,6 +57,14 @@ public class SwimmerController : MonoBehaviour {
 		Vector3 temp = transform.position;
 		temp.y += swimSpeed;
 		temp.x += swimAngle;
+		if (swimAngleNeg && temp.x < -4.7f) {
+			temp.x = -4.7f;
+			swimAngle = 0;
+		}
+		if (!swimAngleNeg && temp.x > 4.7f) {
+			temp.x = 4.7f;
+			swimAngle = 0;
+		}
 		transform.position = temp;
 
 		Invoke ("MoveSwimmer", 2);
