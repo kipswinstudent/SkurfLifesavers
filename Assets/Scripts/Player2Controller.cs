@@ -11,6 +11,16 @@ public class Player2Controller : MonoBehaviour {
     public float Right;
 
     bool checking = false;
+	public float checkTimer2;
+	float timer2;
+
+	public GameObject LifePreserver2;
+	public Vector3 home;
+	LifePreserverController RingScript;
+
+	void Start () {
+		RingScript = LifePreserver2.GetComponent<LifePreserverController> ();
+	}
 
     void Update()
     {
@@ -41,25 +51,42 @@ public class Player2Controller : MonoBehaviour {
         }
         if (!Input.GetKey(KeyCode.L) && !Input.GetKey(KeyCode.K))
         {
-            Debug.Log("Checking for loot!");
-            checking = true;
+			PrepareToThrow ();
         }
         else
         {
             checking = false;
         }
-    }
+		if (checking && Time.time > timer2) {
+			ThrowRing ();
+		}
+		CheckRing ();
+	}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (checking)
-        {
-            if (other.tag == "Loot")
-            {
-                Destroy(other.gameObject);
-                Debug.Log("Picked up a loot!");
-                //collect that loot
-            }
-        }
-    }
+	void ThrowRing (){
+		if (checking) {
+			LifePreserver2.SetActive(true);
+			RingScript.targetPos = transform.position;
+			LifePreserver2.transform.position = RingScript.homePos;
+			checking = false;
+		}
+	}
+
+	void PrepareToThrow()
+	{
+		if (!checking) {
+			timer2 = checkTimer2 + Time.time;
+			checking = true;
+		}
+	}
+
+	void CheckRing()
+	{
+		if (RingScript.AtTarget) {
+			//LifePreserver.transform.position = RingScript.homePos;
+			RingScript.AtTarget = false;
+			LifePreserver2.SetActive (false);
+			//checking = false;
+		}
+	}
 }
