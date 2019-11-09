@@ -69,4 +69,11 @@ public class SwimmerController : MonoBehaviour {
 
 		Invoke ("MoveSwimmer", 2);
 	}
+
+	void OnTriggerEnter2D (Collider2D other){
+		if (other.tag == "Ring") {
+			//spawn angry swimmer
+		}
+		//also need to work out a way to avoid overlapping swimmers and drowners
+	}
 }
