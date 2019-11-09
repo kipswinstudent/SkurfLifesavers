@@ -10,12 +10,17 @@ public class SwimmerController : MonoBehaviour {
 	public float swimSpeed = 1;
 	public GameObject DrowningSwimmer;
 	bool swimAngleNeg = true;
+	Animator thisAnim;
 
 	SpriteRenderer ThisSR;
+	public float hitTimer;
+	float timeTilFade;
+	bool swimmerhit = false;
 
 	void Start()
 	{
 		ThisSR = GetComponent<SpriteRenderer> ();
+		thisAnim = GetComponent<Animator> ();
 	}
 
 	void Awake () {
@@ -50,6 +55,10 @@ public class SwimmerController : MonoBehaviour {
 		} else if (transform.position.y > -1.4f) {
 			ThisSR.sortingOrder = 5;
 		}
+
+		if (swimmerhit && Time.time > timeTilFade) {
+			Destroy (gameObject);
+		}
 	}
 
 	private void MoveSwimmer()
@@ -66,13 +75,18 @@ public class SwimmerController : MonoBehaviour {
 			swimAngle = 0;
 		}
 		transform.position = temp;
+		if (!swimmerhit) {
+			Invoke ("MoveSwimmer", 2);
+		}
 
-		Invoke ("MoveSwimmer", 2);
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Ring") {
-			//spawn angry swimmer
+			thisAnim.SetBool ("Hit", true);
+			swimmerhit = true;
+			timeTilFade = Time.time + hitTimer;
+
 		}
 		//also need to work out a way to avoid overlapping swimmers and drowners
 	}

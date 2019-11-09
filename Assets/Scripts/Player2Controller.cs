@@ -11,8 +11,10 @@ public class Player2Controller : MonoBehaviour {
     public float Right;
 
     bool checking = false;
+	bool disableMovement = false;
 	public float checkTimer2;
 	float timer2;
+	SpriteRenderer thisSR;
 
 	public GameObject LifePreserver2;
 	public Vector3 home;
@@ -20,22 +22,25 @@ public class Player2Controller : MonoBehaviour {
 
 	void Start () {
 		RingScript = LifePreserver2.GetComponent<LifePreserverController> ();
+		thisSR = GetComponent<SpriteRenderer> ();
 	}
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.L))
-        {
-            Vector3 temp = transform.position;
-            temp.x += speed;
-            transform.position = temp;
-        }
-        if (Input.GetKey(KeyCode.K))
-        {
-            Vector3 temp = transform.position;
-            temp.y += speed;
-            transform.position = temp;
-        }
+		if (!disableMovement) {
+			if (Input.GetKey(KeyCode.L))
+			{
+				Vector3 temp = transform.position;
+				temp.x += speed;
+				transform.position = temp;
+			}
+			if (Input.GetKey(KeyCode.K))
+			{
+				Vector3 temp = transform.position;
+				temp.y += speed;
+				transform.position = temp;
+			}
+		}
 
         if (transform.position.y > Upper)
         {
@@ -69,6 +74,8 @@ public class Player2Controller : MonoBehaviour {
 			RingScript.targetPos = transform.position;
 			LifePreserver2.transform.position = RingScript.homePos;
 			checking = false;
+			disableMovement = true;
+			thisSR.enabled = false;
 		}
 	}
 
@@ -86,6 +93,8 @@ public class Player2Controller : MonoBehaviour {
 			//LifePreserver.transform.position = RingScript.homePos;
 			RingScript.AtTarget = false;
 			LifePreserver2.SetActive (false);
+			disableMovement = false;
+			thisSR.enabled = true;
 			//checking = false;
 		}
 	}
