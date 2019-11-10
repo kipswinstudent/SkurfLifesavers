@@ -41,9 +41,7 @@ public class PlayerController : MonoBehaviour {
 				transform.position = temp;
 			}
 		}
-
-
-
+			
 		if (transform.position.y > Upper) {
 			Vector3 temp = transform.position;
 			temp.y = Lower;
