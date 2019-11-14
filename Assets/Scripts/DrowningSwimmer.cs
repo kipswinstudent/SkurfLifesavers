@@ -7,6 +7,8 @@ public class DrowningSwimmer : MonoBehaviour {
 	public GameObject swimmerDrowning;
 	public GameObject swimmerSaved;
 	//public GameObject drowned;
+	KeepingScore scoreScript;
+	public int score;
 
 	public float drowningTimer;
 	float timeToDrown;
@@ -15,6 +17,7 @@ public class DrowningSwimmer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timeToDrown = Time.time + drowningTimer;
+		scoreScript = GameObject.Find ("GameRunner").GetComponent<KeepingScore> ();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +39,14 @@ public class DrowningSwimmer : MonoBehaviour {
 		if (other.tag == "Ring") {
 			Debug.Log ("Hit with ring!!");
 			swimmerDrowning.SetActive (false);
+			scoreScript.P1Score += score;
+			swimmerSaved.SetActive (true);
+			saved = true;
+		}
+		if (other.tag == "Ring2") {
+			Debug.Log ("Hit with ring!!");
+			swimmerDrowning.SetActive (false);
+			scoreScript.P2Score += score;
 			swimmerSaved.SetActive (true);
 			saved = true;
 		}
