@@ -9,17 +9,20 @@ public class BeerCanController : MonoBehaviour {
 	float landValue;
 	int layerValue;
 	public float fallSpeed;
+    public int score;
 
 	SpriteRenderer thisRenderer;
 	Animator canAnim;
 	public Sprite fullCan;
 	public Sprite floatCan;
 	bool landed = false;
+    KeepingScore scoreScript;
 
 	// Use this for initialization
 	void Start () {
 		thisRenderer = GetComponentInChildren <SpriteRenderer> ();
 		canAnim = GetComponentInChildren<Animator> ();
+        scoreScript = GameObject.Find("GameRunner").GetComponent<KeepingScore>();
 		//thisRenderer.sprite = fullCan;
 		startX = Random.Range (-5.0f, 5.0f);
 		landValue = Random.Range (-1.4f, 1.4f);
@@ -51,4 +54,20 @@ public class BeerCanController : MonoBehaviour {
 			canAnim.SetBool ("Floating", true);
 		}
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Ring")
+        {
+            Debug.Log("Can hit with ring!!");
+            scoreScript.P1Score += score;
+
+        }
+        if (other.tag == "Ring2")
+        {
+            Debug.Log("Can hit with ring!!");
+            scoreScript.P2Score += score;
+
+        }
+    }
 }

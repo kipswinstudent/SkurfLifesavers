@@ -132,7 +132,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -169,7 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swimmerDrowning: {fileID: 1705654028182078}
   swimmerSaved: {fileID: 1678904274428464}
-  drowningTimer: 5
+  score: 1000
+  drowningTimer: 15
 --- !u!212 &212260056178483166
 SpriteRenderer:
   m_ObjectHideFlags: 1

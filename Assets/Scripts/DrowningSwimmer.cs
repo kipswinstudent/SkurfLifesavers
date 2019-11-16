@@ -8,17 +8,21 @@ public class DrowningSwimmer : MonoBehaviour {
 	public GameObject swimmerSaved;
 	//public GameObject drowned;
 	KeepingScore scoreScript;
+    SpawnSwimmers countingScript;
 	public int score;
 
 	public float drowningTimer;
 	float timeToDrown;
 	bool saved = false;
 
+
 	// Use this for initialization
 	void Start () {
 		timeToDrown = Time.time + drowningTimer;
 		scoreScript = GameObject.Find ("GameRunner").GetComponent<KeepingScore> ();
-	}
+        countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,7 +32,7 @@ public class DrowningSwimmer : MonoBehaviour {
 			}
 			if (saved) {
 				Destroy (gameObject);
-				//also need to increment score
+                countingScript.numberOfObjects -= 1;
 			}
 
 		}

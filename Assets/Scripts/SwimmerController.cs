@@ -11,6 +11,7 @@ public class SwimmerController : MonoBehaviour {
 	public GameObject DrowningSwimmer;
 	bool swimAngleNeg = true;
 	Animator thisAnim;
+    SpawnSwimmers countingScript;
 
 	SpriteRenderer ThisSR;
 	public float hitTimer;
@@ -21,6 +22,7 @@ public class SwimmerController : MonoBehaviour {
 	{
 		ThisSR = GetComponent<SpriteRenderer> ();
 		thisAnim = GetComponent<Animator> ();
+        countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
 	}
 
 	void Awake () {
@@ -57,7 +59,8 @@ public class SwimmerController : MonoBehaviour {
 		}
 
 		if (swimmerhit && Time.time > timeTilFade) {
-			Destroy (gameObject);
+            countingScript.numberOfObjects -= 1;
+            Destroy (gameObject);
 		}
 	}
 
@@ -68,11 +71,11 @@ public class SwimmerController : MonoBehaviour {
 		temp.x += swimAngle;
 		if (swimAngleNeg && temp.x < -4.7f) {
 			temp.x = -4.7f;
-			swimAngle = 0;
+			swimAngle = -swimAngle;
 		}
 		if (!swimAngleNeg && temp.x > 4.7f) {
 			temp.x = 4.7f;
-			swimAngle = 0;
+			swimAngle = -swimAngle;
 		}
 		transform.position = temp;
 		if (!swimmerhit) {
@@ -82,7 +85,7 @@ public class SwimmerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
-		if (other.tag == "Ring") {
+		if (other.tag == "Ring" | other.tag == "Ring2") {
 			thisAnim.SetBool ("Hit", true);
 			swimmerhit = true;
 			timeTilFade = Time.time + hitTimer;
