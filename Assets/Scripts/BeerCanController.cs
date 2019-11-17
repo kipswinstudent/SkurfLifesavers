@@ -15,6 +15,7 @@ public class BeerCanController : MonoBehaviour {
 	Animator canAnim;
 	public Sprite fullCan;
 	public Sprite floatCan;
+	public Sprite savedCan;
 	bool landed = false;
     KeepingScore scoreScript;
 
@@ -61,13 +62,14 @@ public class BeerCanController : MonoBehaviour {
         {
             Debug.Log("Can hit with ring!!");
             scoreScript.P1Score += score;
+			thisRenderer.sprite = savedCan;
 
         }
         if (other.tag == "Ring2")
         {
             Debug.Log("Can hit with ring!!");
             scoreScript.P2Score += score;
-
+			thisRenderer.sprite = savedCan;
         }
     }
 }
