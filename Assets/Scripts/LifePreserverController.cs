@@ -39,6 +39,7 @@ public class LifePreserverController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Loot") {
 			hitSomething = true;
+            Debug.Log("I hit a " + other.gameObject.name);
 		}
 	}
 }

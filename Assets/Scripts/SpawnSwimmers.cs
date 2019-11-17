@@ -16,7 +16,7 @@ public class SpawnSwimmers : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(numberOfObjects + " objects");
+        //Debug.Log(numberOfObjects + " objects");
 	}
 
 	private void SpawnSwimmer()

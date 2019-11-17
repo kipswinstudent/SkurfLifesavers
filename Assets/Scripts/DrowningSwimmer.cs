@@ -40,20 +40,25 @@ public class DrowningSwimmer : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (other.tag == "Ring") {
-			Debug.Log ("Hit with ring!!");
-			swimmerDrowning.SetActive (false);
-			scoreScript.P1Score += score;
-			swimmerSaved.SetActive (true);
-			saved = true;
-		}
-		if (other.tag == "Ring2") {
-			Debug.Log ("Hit with ring!!");
-			swimmerDrowning.SetActive (false);
-			scoreScript.P2Score += score;
-			swimmerSaved.SetActive (true);
-			saved = true;
-		}
+        if (!saved) {
+            if (other.tag == "Ring")
+            {
+                Debug.Log("Hit with ring!!");
+                swimmerDrowning.SetActive(false);
+                scoreScript.P1Score += score;
+                swimmerSaved.SetActive(true);
+                saved = true;
+            }
+            if (other.tag == "Ring2")
+            {
+                Debug.Log("Hit with ring!!");
+                swimmerDrowning.SetActive(false);
+                scoreScript.P2Score += score;
+                swimmerSaved.SetActive(true);
+                saved = true;
+            }
+        }
+        
 	}
 
 

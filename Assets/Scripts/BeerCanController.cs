@@ -17,7 +17,11 @@ public class BeerCanController : MonoBehaviour {
 	public Sprite floatCan;
 	public Sprite savedCan;
 	bool landed = false;
+    bool saved = false;
     KeepingScore scoreScript;
+
+    int timeTilfade = 2;
+    float fadeTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -34,8 +38,6 @@ public class BeerCanController : MonoBehaviour {
 		transform.position = temp;
 	}
 
-
-
 	// Update is called once per frame
 	void Update () {
 		
@@ -45,6 +47,10 @@ public class BeerCanController : MonoBehaviour {
 			fall.y -= fallSpeed;
 			transform.position = fall;
 		}
+
+        if (Time.time > fadeTimer && saved) {
+            Destroy(gameObject);
+        }
 	}
 
 	private void CheckIfLanded()
@@ -58,18 +64,24 @@ public class BeerCanController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Ring")
-        {
-            Debug.Log("Can hit with ring!!");
-            scoreScript.P1Score += score;
-			thisRenderer.sprite = savedCan;
-
+        if (!saved) {
+            if (other.tag == "Ring")
+            {
+                Debug.Log("Can hit with ring!!");
+                scoreScript.P1Score += score;
+                thisRenderer.sprite = savedCan;
+                fadeTimer = timeTilfade + Time.time;
+                saved = true;
+            }
+            if (other.tag == "Ring2")
+            {
+                Debug.Log("Can hit with ring!!");
+                scoreScript.P2Score += score;
+                thisRenderer.sprite = savedCan;
+                fadeTimer = timeTilfade + Time.time;
+                saved = true;
+            }
         }
-        if (other.tag == "Ring2")
-        {
-            Debug.Log("Can hit with ring!!");
-            scoreScript.P2Score += score;
-			thisRenderer.sprite = savedCan;
-        }
+        
     }
 }

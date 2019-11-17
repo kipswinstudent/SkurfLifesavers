@@ -31,7 +31,13 @@ public class GameRunner : MonoBehaviour {
 
 		int min = Mathf.FloorToInt (GameTime / 60);
 		int sec = Mathf.FloorToInt (GameTime % 60);
-		timerText.text = (min.ToString() + ":" + sec.ToString());
+        if (sec < 10) {
+            timerText.text = (min + ":0" + sec);
+        }
+        else {
+            timerText.text = (min + ":" + sec);
+        }
+        
 
 		if (Time.time > timeTilQuit) {
 			SceneManager.LoadScene (0);
@@ -57,8 +63,9 @@ public class GameRunner : MonoBehaviour {
 
 	private void DoGameOver()
 	{
-		//switch time off
-		//press any button to go back to main menu
-		//make a score screen come up
+        //switch time off
+        //press any button to go back to main menu
+        //make a score screen come up
+        SceneManager.LoadScene(0);
 	}
 }

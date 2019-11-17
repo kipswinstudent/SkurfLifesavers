@@ -20,9 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4727318486190594}
   - component: {fileID: 114371283139335584}
+  - component: {fileID: 61497391503228092}
+  - component: {fileID: 50790885939402588}
   m_Layer: 0
   m_Name: BeerCan
-  m_TagString: Untagged
+  m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,11 +39,10 @@ GameObject:
   - component: {fileID: 4592968417695810}
   - component: {fileID: 212087244868017398}
   - component: {fileID: 95844090327963350}
-  - component: {fileID: 50436734363287700}
   - component: {fileID: 61860008011208194}
   m_Layer: 0
   m_Name: CanSprite
-  m_TagString: Untagged
+  m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,20 +67,20 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1046190339009172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.091048, y: -0.3891608, z: 0}
+  m_LocalPosition: {x: 1.73, y: 2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4592968417695810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50436734363287700
+--- !u!50 &50790885939402588
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449281394603080}
+  m_GameObject: {fileID: 1046190339009172}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -93,16 +94,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61497391503228092
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046190339009172}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.46}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.37, y: 1}
+  m_EdgeRadius: 0
 --- !u!61 &61860008011208194
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449281394603080}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
@@ -152,6 +178,7 @@ MonoBehaviour:
   score: 4000
   fullCan: {fileID: 21300000, guid: 344bebee187535b438bb75308772db12, type: 3}
   floatCan: {fileID: 21300000, guid: dc2711c2037a58742a5fc5fe88a61cd5, type: 3}
+  savedCan: {fileID: 21300000, guid: cccf2bee4a9186442a7aa81668484fd7, type: 3}
 --- !u!212 &212087244868017398
 SpriteRenderer:
   m_ObjectHideFlags: 1
