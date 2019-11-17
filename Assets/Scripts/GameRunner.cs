@@ -15,12 +15,20 @@ public class GameRunner : MonoBehaviour {
 
 	bool isGameOver = false;
 
+	public GameObject gameScreen;
+	public GameObject GOScreen;
+	public Text P1Final;
+	public Text P2Final;
+	public Text winner;
+	KeepingScore scoreScript;
+
 	// Use this for initialization
 	void Start () {
 		gameOverTime = Time.time + GameTime;
 		timeTilQuit = Time.time + idleTimer;
 		StartCoroutine ("Countdown");
 		Time.timeScale = 1;
+		scoreScript = GetComponent<KeepingScore> ();
 	}
 	
 	// Update is called once per frame
@@ -63,9 +71,24 @@ public class GameRunner : MonoBehaviour {
 
 	private void DoGameOver()
 	{
-        //switch time off
-        //press any button to go back to main menu
-        //make a score screen come up
-        SceneManager.LoadScene(0);
+		Time.timeScale = 0;
+		//switch time off
+
+		GOScreen.SetActive(true);
+		gameScreen.SetActive (false);
+		P1Final.text = scoreScript.P1Score.ToString();
+		P2Final.text = scoreScript.P2Score.ToString();
+		if (scoreScript.P1Score > scoreScript.P2Score) {
+			winner.text = "Player 1 wins!!";
+		} 
+		if (scoreScript.P1Score < scoreScript.P2Score){
+			winner.text = "Player 2 wins!!";
+		}
+		if (scoreScript.P1Score == scoreScript.P2Score) {
+			winner.text = "it's a draw!!";
+		}
+		if (Input.anyKeyDown) {
+			SceneManager.LoadScene(0);
+		}
 	}
 }
