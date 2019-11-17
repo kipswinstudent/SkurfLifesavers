@@ -11,6 +11,7 @@ public class LifePreserverController : MonoBehaviour {
 	public bool AtTarget = false;
 
 	CircleCollider2D circleC;
+	public bool hitSomething = false;
 
 
 	// Use this for initialization
@@ -28,10 +29,16 @@ public class LifePreserverController : MonoBehaviour {
 			transform.position = Vector3.MoveTowards (transform.position, targetPos, ringSpeed);
 		}
 
-		if (Vector3.Distance (transform.position, targetPos) < 0.1f) {
+		if (Vector3.Distance (transform.position, targetPos) < 0.1f && !hitSomething) {
 			circleC.enabled = true;
 		} else {
 			circleC.enabled = false;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == "Loot") {
+			hitSomething = true;
 		}
 	}
 }

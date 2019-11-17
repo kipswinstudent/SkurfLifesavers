@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject LifePreserver;
 	public Vector3 home;
 	LifePreserverController RingScript;
+	bool buttonsPressed = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,16 +30,20 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+
 		if (!disableMovement) {
 			if (Input.GetKey (KeyCode.A)) {
 				Vector3 temp = transform.position;
 				temp.x -= speed;
 				transform.position = temp;
+				buttonsPressed = true;
 			}
 			if (Input.GetKey (KeyCode.S)) {
 				Vector3 temp = transform.position;
 				temp.y += speed;
 				transform.position = temp;
+				buttonsPressed = true;
 			}
 		}
 			
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 			temp.x = Right;
 			transform.position = temp;
 		}
-		if (!Input.GetKey (KeyCode.A) && !Input.GetKey (KeyCode.S)) {
+		if (!Input.GetKey (KeyCode.A) && !Input.GetKey (KeyCode.S) && buttonsPressed) {
 			
 			PrepareToThrow ();
 
@@ -96,6 +101,7 @@ public class PlayerController : MonoBehaviour {
 			//LifePreserver.transform.position = RingScript.homePos;
 			RingScript.AtTarget = false;
 			LifePreserver.SetActive (false);
+			RingScript.hitSomething = false;
 			disableMovement = false;
 			thisSR.enabled = true;
 			//checking = false;

@@ -15,6 +15,7 @@ public class Player2Controller : MonoBehaviour {
 	public float checkTimer2;
 	float timer2;
 	SpriteRenderer thisSR;
+	bool buttonsPressed = false;
 
 	public GameObject LifePreserver2;
 	public Vector3 home;
@@ -33,12 +34,14 @@ public class Player2Controller : MonoBehaviour {
 				Vector3 temp = transform.position;
 				temp.x += speed;
 				transform.position = temp;
+				buttonsPressed = true;
 			}
 			if (Input.GetKey(KeyCode.K))
 			{
 				Vector3 temp = transform.position;
 				temp.y += speed;
 				transform.position = temp;
+				buttonsPressed = true;
 			}
 		}
 
@@ -54,7 +57,7 @@ public class Player2Controller : MonoBehaviour {
             temp.x = Left;
             transform.position = temp;
         }
-        if (!Input.GetKey(KeyCode.L) && !Input.GetKey(KeyCode.K))
+		if (!Input.GetKey(KeyCode.L) && !Input.GetKey(KeyCode.K) && buttonsPressed)
         {
 			PrepareToThrow ();
         }
@@ -92,6 +95,7 @@ public class Player2Controller : MonoBehaviour {
 		if (RingScript.AtTarget) {
 			//LifePreserver.transform.position = RingScript.homePos;
 			RingScript.AtTarget = false;
+			RingScript.hitSomething = false;
 			LifePreserver2.SetActive (false);
 			disableMovement = false;
 			thisSR.enabled = true;
