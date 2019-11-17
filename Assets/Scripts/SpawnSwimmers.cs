@@ -10,7 +10,7 @@ public class SpawnSwimmers : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Invoke ("SpawnSwimmer", 6);
+		Invoke ("SpawnSwimmer", 2);
         Invoke("SpawnCan", 15);
 	}
 	
