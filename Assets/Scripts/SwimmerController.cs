@@ -17,6 +17,7 @@ public class SwimmerController : MonoBehaviour {
 	public float hitTimer;
 	float timeTilFade;
 	bool swimmerhit = false;
+	public AudioSource ringHit;
 
 	void Start()
 	{
@@ -89,7 +90,7 @@ public class SwimmerController : MonoBehaviour {
 			thisAnim.SetBool ("Hit", true);
 			swimmerhit = true;
 			timeTilFade = Time.time + hitTimer;
-
+			ringHit.Play ();
 		}
 		//also need to work out a way to avoid overlapping swimmers and drowners
 	}
