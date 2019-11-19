@@ -18,6 +18,7 @@ public class Player2Controller : MonoBehaviour {
 	bool buttonsPressed = false;
 
 	public GameObject LifePreserver2;
+	public GameObject chairRing;
 	public Vector3 home;
 	LifePreserverController RingScript;
 
@@ -74,6 +75,7 @@ public class Player2Controller : MonoBehaviour {
 	void ThrowRing (){
 		if (checking) {
 			LifePreserver2.SetActive(true);
+			chairRing.SetActive (false);
 			RingScript.targetPos = transform.position;
 			LifePreserver2.transform.position = RingScript.homePos;
 			checking = false;
@@ -97,6 +99,7 @@ public class Player2Controller : MonoBehaviour {
 			RingScript.AtTarget = false;
 			RingScript.hitSomething = false;
 			LifePreserver2.SetActive (false);
+			chairRing.SetActive (true);
 			disableMovement = false;
 			thisSR.enabled = true;
 			//checking = false;

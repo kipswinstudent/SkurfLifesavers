@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	public float checkTimer;
 	float timer;
 	SpriteRenderer thisSR;
+	public GameObject chairRing;
 
 	public GameObject LifePreserver;
 	public Vector3 home;
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour {
 	void ThrowRing (){
 		if (checking) {
 			LifePreserver.SetActive(true);
+			chairRing.SetActive (false);
 			RingScript.targetPos = transform.position;
 			LifePreserver.transform.position = RingScript.homePos;
 			checking = false;
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour {
 			//LifePreserver.transform.position = RingScript.homePos;
 			RingScript.AtTarget = false;
 			LifePreserver.SetActive (false);
+			chairRing.SetActive (true);
 			RingScript.hitSomething = false;
 			disableMovement = false;
 			thisSR.enabled = true;

@@ -77,6 +77,9 @@ public class SwimmerController : MonoBehaviour {
 		if (!swimAngleNeg && temp.x > 4.7f) {
 			temp.x = 4.7f;
 			swimAngle = -swimAngle;
+			Vector3 tempScale = transform.localScale;
+			tempScale.x = -1;
+			transform.localScale = tempScale;
 		}
 		transform.position = temp;
 		if (!swimmerhit) {

@@ -16,6 +16,7 @@ public class BeerCanController : MonoBehaviour {
 	public Sprite fullCan;
 	public Sprite floatCan;
 	public Sprite savedCan;
+	public AudioSource splash;
 	bool landed = false;
     bool saved = false;
     KeepingScore scoreScript;
@@ -59,6 +60,7 @@ public class BeerCanController : MonoBehaviour {
 			landed = true;
 			thisRenderer.sprite = floatCan;
 			canAnim.SetBool ("Floating", true);
+			splash.Play ();
 		}
 	}
 

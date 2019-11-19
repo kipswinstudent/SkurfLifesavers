@@ -22,6 +22,13 @@ public class GameRunner : MonoBehaviour {
 	public Text winner;
 	KeepingScore scoreScript;
 
+	public AudioSource beachSounds;
+
+	bool pressA = false;
+	bool pressS = false;
+	bool pressK = false;
+	bool pressL = false;
+
 	// Use this for initialization
 	void Start () {
 		gameOverTime = Time.time + GameTime;
@@ -29,6 +36,7 @@ public class GameRunner : MonoBehaviour {
 		StartCoroutine ("Countdown");
 		Time.timeScale = 1;
 		scoreScript = GetComponent<KeepingScore> ();
+		beachSounds.Play ();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +64,20 @@ public class GameRunner : MonoBehaviour {
 		}
 
 		if (isGameOver) {
-			if (Input.anyKeyDown) {
+			if(Input.GetKeyDown(KeyCode.A)){
+				pressA = true;
+			}
+			if(Input.GetKeyDown(KeyCode.S)){
+				pressS = true;
+			}
+			if(Input.GetKeyDown(KeyCode.K)){
+				pressK = true;
+			}
+			if(Input.GetKeyDown(KeyCode.L)){
+				pressL = true;
+			}
+
+			if (pressA && pressS && pressK && pressL) {
 				SceneManager.LoadScene (0);
 			}
 		}

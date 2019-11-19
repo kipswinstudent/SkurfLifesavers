@@ -27,7 +27,7 @@ public class SpawnSwimmers : MonoBehaviour {
             numberOfObjects += 1;
         }
                 
-		Invoke ("SpawnSwimmer", 6);
+		Invoke ("SpawnSwimmer", Random.Range(4, 7));
 	}
 
     private void SpawnCan()
@@ -38,6 +38,6 @@ public class SpawnSwimmers : MonoBehaviour {
             numberOfObjects += 1;
         }
 
-        Invoke("SpawnCan", 15);
+		Invoke("SpawnCan", Random.Range(12, 17));
     }
 }

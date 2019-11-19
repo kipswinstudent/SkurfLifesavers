@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 114371283139335584}
   - component: {fileID: 61497391503228092}
   - component: {fileID: 50790885939402588}
-  m_Layer: 0
+  - component: {fileID: 82416402849332266}
+  m_Layer: 8
   m_Name: BeerCan
   m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1449281394603080
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +41,7 @@ GameObject:
   - component: {fileID: 212087244868017398}
   - component: {fileID: 95844090327963350}
   - component: {fileID: 61860008011208194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CanSprite
   m_TagString: Loot
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61497391503228092
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -144,6 +145,101 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.17, y: 1.08}
   m_EdgeRadius: 0
+--- !u!82 &82416402849332266
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046190339009172}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 00c20df604939fc4091123d7303b8f2b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95844090327963350
 Animator:
   serializedVersion: 3
@@ -179,6 +275,7 @@ MonoBehaviour:
   fullCan: {fileID: 21300000, guid: 344bebee187535b438bb75308772db12, type: 3}
   floatCan: {fileID: 21300000, guid: dc2711c2037a58742a5fc5fe88a61cd5, type: 3}
   savedCan: {fileID: 21300000, guid: cccf2bee4a9186442a7aa81668484fd7, type: 3}
+  splash: {fileID: 82416402849332266}
 --- !u!212 &212087244868017398
 SpriteRenderer:
   m_ObjectHideFlags: 1

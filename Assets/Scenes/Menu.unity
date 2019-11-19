@@ -1087,7 +1087,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Throw rings to save drowning swimmers
 
-    Don''t annoy the other swimmers though!'
+    Don''t annoy the other swimmers though!
+
+    Press any key to start'
 --- !u!222 &1847834552
 CanvasRenderer:
   m_ObjectHideFlags: 0
