@@ -1788,19 +1788,6 @@ Prefab:
       propertyPath: m_Name
       value: Swimmer
       objectReference: {fileID: 0}
-    - target: {fileID: 1215744929531662, guid: d5fc4df7a56c01148b7b15d2095ac55a, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 50195789228127890, guid: d5fc4df7a56c01148b7b15d2095ac55a,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1215744929531662, guid: d5fc4df7a56c01148b7b15d2095ac55a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5fc4df7a56c01148b7b15d2095ac55a, type: 2}
   m_IsPrefabAsset: 0
@@ -2093,6 +2080,10 @@ Prefab:
     - target: {fileID: 4425669232432286, guid: 3753f88b2614400449e7b9932dce8947, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940700908822168, guid: 3753f88b2614400449e7b9932dce8947, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3753f88b2614400449e7b9932dce8947, type: 2}
@@ -3001,6 +2992,10 @@ Prefab:
     - target: {fileID: 4727318486190594, guid: b0babef31487de64fb62a12219c11199, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046190339009172, guid: b0babef31487de64fb62a12219c11199, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0babef31487de64fb62a12219c11199, type: 2}

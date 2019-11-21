@@ -19,6 +19,10 @@ public class SwimmerController : MonoBehaviour {
 	bool swimmerhit = false;
 	public AudioSource ringHit;
 
+	public GameObject overlapCheck; 
+	public LayerMask swimmersLayer;
+	bool hittingSwimmer;
+
 	void Start()
 	{
 		ThisSR = GetComponent<SpriteRenderer> ();
@@ -63,6 +67,13 @@ public class SwimmerController : MonoBehaviour {
             countingScript.numberOfObjects -= 1;
             Destroy (gameObject);
 		}
+
+		hittingSwimmer = Physics2D.OverlapCircle (overlapCheck.transform.position, 1.0f, swimmersLayer); 
+
+		if (hittingSwimmer) {
+			Debug.Log ("I have collided and turned around");
+			FlipDirection();
+		}
 	}
 
 	private void MoveSwimmer()
@@ -73,6 +84,9 @@ public class SwimmerController : MonoBehaviour {
 		if (swimAngleNeg && temp.x < -4.7f) {
 			temp.x = -4.7f;
 			swimAngle = -swimAngle;
+			Vector3 tempScale = transform.localScale;
+			tempScale.x = -1;
+			transform.localScale = tempScale;
 		}
 		if (!swimAngleNeg && temp.x > 4.7f) {
 			temp.x = 4.7f;
@@ -85,7 +99,14 @@ public class SwimmerController : MonoBehaviour {
 		if (!swimmerhit) {
 			Invoke ("MoveSwimmer", 2);
 		}
+	}
 
+	private void FlipDirection()
+	{
+		swimAngle = -swimAngle;
+		Vector3 tempScale = transform.localScale;
+		tempScale.x = -1;
+		transform.localScale = tempScale;
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
