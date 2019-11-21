@@ -21,7 +21,15 @@ public class DrowningSwimmer : MonoBehaviour {
 		timeToDrown = Time.time + drowningTimer;
 		scoreScript = GameObject.Find ("GameRunner").GetComponent<KeepingScore> ();
         countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
-
+		Vector3 temp = transform.position;
+		if (temp.x > 5.5f) {
+			temp.x = 5.5f;
+			transform.position = temp;
+		}
+		if (temp.x < -5.5f) {
+			temp.x = -5.5f;
+			transform.position = temp;
+		}
     }
 	
 	// Update is called once per frame
@@ -36,6 +44,7 @@ public class DrowningSwimmer : MonoBehaviour {
 			}
 
 		}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)

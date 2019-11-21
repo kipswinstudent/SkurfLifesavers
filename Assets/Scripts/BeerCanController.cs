@@ -33,10 +33,10 @@ public class BeerCanController : MonoBehaviour {
         scoreScript = GameObject.Find("GameRunner").GetComponent<KeepingScore>();
         countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
         //thisRenderer.sprite = fullCan;
-        startX = Random.Range (0, startPoints.Length-1);
+        //startX = Random.Range (0, startPoints.Length-1);
 		landValue = Random.Range (-1.4f, 1.4f);
 
-		transform.position = startPoints[startX].transform.position;
+		//transform.position = startPoints[startX].transform.position;
 	}
 
 	// Update is called once per frame

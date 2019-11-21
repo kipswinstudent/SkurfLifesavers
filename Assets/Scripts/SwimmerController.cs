@@ -21,8 +21,6 @@ public class SwimmerController : MonoBehaviour {
 
 	bool hittingSwimmer;
 
-    public GameObject[] spawnPoints;
-
 	void Start()
 	{
 		ThisSR = GetComponent<SpriteRenderer> ();
@@ -31,7 +29,7 @@ public class SwimmerController : MonoBehaviour {
 	}
 
 	void Awake () {
-		StartPoint = Random.Range (0, spawnPoints.Length-1);
+		//StartPoint = Random.Range (0, spawnPoints.Length-1);
 		swimAngle = Random.Range (-1.0f, 1.0f);
 		terminus = Random.Range (0.0f, 1.0f);
 		if (swimAngle > 0) {
@@ -41,7 +39,7 @@ public class SwimmerController : MonoBehaviour {
 			swimAngleNeg = false;
 		}
 		
-		transform.position = spawnPoints[StartPoint].transform.position;
+		//transform.position = spawnPoints[StartPoint].transform.position;
 
 		Invoke ("MoveSwimmer", 1);
 	}
@@ -74,17 +72,19 @@ public class SwimmerController : MonoBehaviour {
 		temp.x += swimAngle;
 		if (swimAngleNeg && temp.x < -4.7f) {
 			temp.x = -4.7f;
-			swimAngle = -swimAngle;
+			FlipDirection ();
+			/*swimAngle = -swimAngle;
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
-			transform.localScale = tempScale;
+			transform.localScale = tempScale;*/
 		}
 		if (!swimAngleNeg && temp.x > 4.7f) {
 			temp.x = 4.7f;
-			swimAngle = -swimAngle;
+			FlipDirection ();
+			/*swimAngle = -swimAngle;
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
-			transform.localScale = tempScale;
+			transform.localScale = tempScale;*/
 		}
 		transform.position = temp;
 		if (!swimmerhit) {
@@ -96,7 +96,7 @@ public class SwimmerController : MonoBehaviour {
 	{
 		swimAngle = -swimAngle;
 		Vector3 tempScale = transform.localScale;
-		tempScale.x = -1;
+		tempScale.x = -tempScale.x;
 		transform.localScale = tempScale;
 	}
 

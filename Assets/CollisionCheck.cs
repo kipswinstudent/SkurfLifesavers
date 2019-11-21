@@ -12,9 +12,11 @@ public class CollisionCheck : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Loot")
+		Debug.Log ("I hit a thing");
+		if (other.tag == "Loot")
         {
-            parentScript.FlipDirection();  
+			Debug.Log ("I've hit a swimmer");
+			parentScript.FlipDirection();  
         }
     }
 

@@ -8,6 +8,12 @@ public class SpawnSwimmers : MonoBehaviour {
     public GameObject BeerCan;
     public int numberOfObjects;
     public int numberOfCans;
+
+	public GameObject[] swimmerSpawn;
+	public GameObject[] CanSpawn;
+
+	Vector3 swimmerStart;
+	Vector3 canStart; 
     
 
     // Use this for initialization
@@ -23,9 +29,11 @@ public class SpawnSwimmers : MonoBehaviour {
 
 	private void SpawnSwimmer()
 	{
-        if (numberOfObjects <= 4)
+		
+		if (numberOfObjects <= 4)
         {
-            Instantiate(swimmer);
+			swimmerStart = swimmerSpawn [Random.Range (0, swimmerSpawn.Length - 1)].transform.position;
+			Instantiate(swimmer, swimmerStart, Quaternion.identity);
             numberOfObjects += 1;
         }
                 
@@ -38,7 +46,8 @@ public class SpawnSwimmers : MonoBehaviour {
         {
             if (numberOfCans <= 2)
             {
-                Instantiate(BeerCan);
+				canStart = CanSpawn [Random.Range (0, CanSpawn.Length - 1)].transform.position;
+				Instantiate(BeerCan, canStart, Quaternion.identity);
                 numberOfObjects += 1;
                 numberOfCans += 1;
             }

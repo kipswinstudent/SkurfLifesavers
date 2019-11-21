@@ -630,6 +630,15 @@ MonoBehaviour:
   BeerCan: {fileID: 1046190339009172, guid: b0babef31487de64fb62a12219c11199, type: 2}
   numberOfObjects: 0
   numberOfCans: 0
+  swimmerSpawn:
+  - {fileID: 564773494}
+  - {fileID: 984785768}
+  - {fileID: 853540201}
+  CanSpawn:
+  - {fileID: 286651607}
+  - {fileID: 867501758}
+  - {fileID: 1927221426}
+  - {fileID: 1255009139}
 --- !u!4 &596322930
 Transform:
   m_ObjectHideFlags: 0
@@ -691,7 +700,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1932,21 +1941,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114737829613473362, guid: d5fc4df7a56c01148b7b15d2095ac55a,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 564773494}
-    - target: {fileID: 114737829613473362, guid: d5fc4df7a56c01148b7b15d2095ac55a,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 984785768}
-    - target: {fileID: 114737829613473362, guid: d5fc4df7a56c01148b7b15d2095ac55a,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 853540201}
     - target: {fileID: 1215744929531662, guid: d5fc4df7a56c01148b7b15d2095ac55a, type: 2}
       propertyPath: m_Name
       value: Swimmer

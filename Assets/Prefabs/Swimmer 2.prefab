@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4700127729060576}
   - component: {fileID: 58170544080783742}
   - component: {fileID: 114274359914408998}
-  m_Layer: 8
+  - component: {fileID: 50582211082429336}
+  m_Layer: 0
   m_Name: CollisionChecker
-  m_TagString: Loot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,26 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215744929531662}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!50 &50582211082429336
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045448768975830}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -276,10 +297,6 @@ MonoBehaviour:
     type: 2}
   hitTimer: 3
   ringHit: {fileID: 82589450076985254}
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &212136716196129624
 SpriteRenderer:
   m_ObjectHideFlags: 1
