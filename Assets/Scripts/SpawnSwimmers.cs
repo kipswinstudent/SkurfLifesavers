@@ -7,9 +7,11 @@ public class SpawnSwimmers : MonoBehaviour {
 	public GameObject swimmer;
     public GameObject BeerCan;
     public int numberOfObjects;
+    public int numberOfCans;
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		Invoke ("SpawnSwimmer", 2);
         Invoke("SpawnCan", 15);
 	}
@@ -34,8 +36,13 @@ public class SpawnSwimmers : MonoBehaviour {
     {
         if (numberOfObjects <= 4)
         {
-            Instantiate(BeerCan);
-            numberOfObjects += 1;
+            if (numberOfCans <= 2)
+            {
+                Instantiate(BeerCan);
+                numberOfObjects += 1;
+                numberOfCans += 1;
+            }
+            
         }
 
 		Invoke("SpawnCan", Random.Range(12, 17));

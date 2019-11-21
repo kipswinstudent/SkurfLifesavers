@@ -5,7 +5,7 @@ using UnityEngine;
 public class BeerCanController : MonoBehaviour {
 
 	public float startY;
-	float startX;
+	int startX;
 	float landValue;
 	int layerValue;
 	public float fallSpeed;
@@ -20,6 +20,8 @@ public class BeerCanController : MonoBehaviour {
 	bool landed = false;
     bool saved = false;
     KeepingScore scoreScript;
+    SpawnSwimmers countingScript;
+    public GameObject[] startPoints; 
 
     int timeTilfade = 2;
     float fadeTimer;
@@ -29,14 +31,12 @@ public class BeerCanController : MonoBehaviour {
 		thisRenderer = GetComponentInChildren <SpriteRenderer> ();
 		canAnim = GetComponentInChildren<Animator> ();
         scoreScript = GameObject.Find("GameRunner").GetComponent<KeepingScore>();
-		//thisRenderer.sprite = fullCan;
-		startX = Random.Range (-5.0f, 5.0f);
+        countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
+        //thisRenderer.sprite = fullCan;
+        startX = Random.Range (0, startPoints.Length-1);
 		landValue = Random.Range (-1.4f, 1.4f);
 
-		Vector3 temp = transform.position;
-		temp.x = startX;
-		temp.y = startY;
-		transform.position = temp;
+		transform.position = startPoints[startX].transform.position;
 	}
 
 	// Update is called once per frame
@@ -51,6 +51,8 @@ public class BeerCanController : MonoBehaviour {
 
         if (Time.time > fadeTimer && saved) {
             Destroy(gameObject);
+            countingScript.numberOfObjects--;
+            countingScript.numberOfCans--;
         }
 	}
 

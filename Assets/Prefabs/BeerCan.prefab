@@ -276,6 +276,11 @@ MonoBehaviour:
   floatCan: {fileID: 21300000, guid: dc2711c2037a58742a5fc5fe88a61cd5, type: 3}
   savedCan: {fileID: 21300000, guid: cccf2bee4a9186442a7aa81668484fd7, type: 3}
   splash: {fileID: 82416402849332266}
+  startPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212087244868017398
 SpriteRenderer:
   m_ObjectHideFlags: 1

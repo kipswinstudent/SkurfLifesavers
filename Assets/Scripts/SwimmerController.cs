@@ -19,9 +19,9 @@ public class SwimmerController : MonoBehaviour {
 	bool swimmerhit = false;
 	public AudioSource ringHit;
 
-	public GameObject overlapCheck; 
-	public LayerMask swimmersLayer;
 	bool hittingSwimmer;
+
+    public GameObject[] spawnPoints;
 
 	void Start()
 	{
@@ -31,7 +31,7 @@ public class SwimmerController : MonoBehaviour {
 	}
 
 	void Awake () {
-		StartPoint = Random.Range (-5, 5);
+		StartPoint = Random.Range (0, spawnPoints.Length-1);
 		swimAngle = Random.Range (-1.0f, 1.0f);
 		terminus = Random.Range (0.0f, 1.0f);
 		if (swimAngle > 0) {
@@ -40,10 +40,8 @@ public class SwimmerController : MonoBehaviour {
 			transform.localScale = tempScale;
 			swimAngleNeg = false;
 		}
-		Vector3 temp = transform.position;
-		temp.x = StartPoint;
-		temp.y = -2;
-		transform.position = temp;
+		
+		transform.position = spawnPoints[StartPoint].transform.position;
 
 		Invoke ("MoveSwimmer", 1);
 	}
@@ -66,13 +64,6 @@ public class SwimmerController : MonoBehaviour {
 		if (swimmerhit && Time.time > timeTilFade) {
             countingScript.numberOfObjects -= 1;
             Destroy (gameObject);
-		}
-
-		hittingSwimmer = Physics2D.OverlapCircle (overlapCheck.transform.position, 1.0f, swimmersLayer); 
-
-		if (hittingSwimmer) {
-			Debug.Log ("I have collided and turned around");
-			FlipDirection();
 		}
 	}
 
@@ -101,7 +92,7 @@ public class SwimmerController : MonoBehaviour {
 		}
 	}
 
-	private void FlipDirection()
+	public void FlipDirection()
 	{
 		swimAngle = -swimAngle;
 		Vector3 tempScale = transform.localScale;
@@ -116,6 +107,8 @@ public class SwimmerController : MonoBehaviour {
 			timeTilFade = Time.time + hitTimer;
 			ringHit.Play ();
 		}
-		//also need to work out a way to avoid overlapping swimmers and drowners
+
+        //also need to work out a way to avoid overlapping swimmers and drowners
+       
 	}
 }
