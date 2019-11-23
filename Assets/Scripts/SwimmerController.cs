@@ -9,10 +9,10 @@ public class SwimmerController : MonoBehaviour {
 	float terminus;
 	public float swimSpeed = 1;
 	public GameObject DrowningSwimmer;
-	bool swimAngleNeg = true;
+	//bool swimAngleNeg = true;
 	Animator thisAnim;
     SpawnSwimmers countingScript;
-
+    KeepingScore scoreScript;
 	SpriteRenderer ThisSR;
 	public float hitTimer;
 	float timeTilFade;
@@ -20,24 +20,27 @@ public class SwimmerController : MonoBehaviour {
 	public AudioSource ringHit;
 
 	bool hittingSwimmer;
+    public GameObject collisionChecker;
+    public LayerMask layer;
 
 	void Start()
 	{
 		ThisSR = GetComponent<SpriteRenderer> ();
 		thisAnim = GetComponent<Animator> ();
         countingScript = GameObject.Find("GameRunner").GetComponent<SpawnSwimmers>();
+        scoreScript = GameObject.Find("GameRunner").GetComponent<KeepingScore>();
 	}
 
 	void Awake () {
 		//StartPoint = Random.Range (0, spawnPoints.Length-1);
-		swimAngle = Random.Range (-1.0f, 1.0f);
+		//swimAngle = Random.Range (-1.0f, 1.0f);
 		terminus = Random.Range (0.0f, 1.0f);
-		if (swimAngle > 0) {
+		/*if (swimAngle > 0) {
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
 			transform.localScale = tempScale;
 			swimAngleNeg = false;
-		}
+		}*/
 		
 		//transform.position = spawnPoints[StartPoint].transform.position;
 
@@ -67,16 +70,30 @@ public class SwimmerController : MonoBehaviour {
 
 	private void MoveSwimmer()
 	{
-		Vector3 temp = transform.position;
-		temp.y += swimSpeed;
-		temp.x += swimAngle;
-		if (swimAngleNeg && temp.x < -4.7f) {
+        hittingSwimmer = Physics2D.OverlapCircle(collisionChecker.transform.position, 0.5f, layer);
+
+        Vector3 temp = transform.position;
+        if (!hittingSwimmer)
+        {
+            temp.y += swimSpeed;
+        }
+        else {
+            Debug.Log("The way is blocked!");
+        }
+        
+		
+		transform.position = temp;
+		if (!swimmerhit) {
+			Invoke ("MoveSwimmer", 2);
+		}
+        //temp.x += swimAngle;
+        /*if (swimAngleNeg && temp.x < -4.7f) {
 			temp.x = -4.7f;
 			FlipDirection ();
 			/*swimAngle = -swimAngle;
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
-			transform.localScale = tempScale;*/
+			transform.localScale = tempScale;
 		}
 		if (!swimAngleNeg && temp.x > 4.7f) {
 			temp.x = 4.7f;
@@ -84,15 +101,11 @@ public class SwimmerController : MonoBehaviour {
 			/*swimAngle = -swimAngle;
 			Vector3 tempScale = transform.localScale;
 			tempScale.x = -1;
-			transform.localScale = tempScale;*/
-		}
-		transform.position = temp;
-		if (!swimmerhit) {
-			Invoke ("MoveSwimmer", 2);
-		}
-	}
+			transform.localScale = tempScale;
+		}*/
+    }
 
-	public void FlipDirection()
+    public void FlipDirection()
 	{
 		swimAngle = -swimAngle;
 		Vector3 tempScale = transform.localScale;
@@ -107,6 +120,12 @@ public class SwimmerController : MonoBehaviour {
 			timeTilFade = Time.time + hitTimer;
 			ringHit.Play ();
 		}
+        if (other.tag == "Ring") {
+            scoreScript.P1Score -= 1000;
+        }
+        if (other.tag == "Ring2") {
+            scoreScript.P2Score -= 1000;
+        }
 
         //also need to work out a way to avoid overlapping swimmers and drowners
        

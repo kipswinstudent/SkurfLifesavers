@@ -35,12 +35,15 @@ public class DrowningSwimmer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > timeToDrown) {
-			if (!saved) {
-				//Destroy (gameObject); //do drowning animation
+            countingScript.numberOfObjects -= 1;
+            if (!saved) {
+				Destroy (gameObject); //do drowning animation
+                scoreScript.P1Score -= 500;
+                scoreScript.P2Score -= 500;
 			}
 			if (saved) {
 				Destroy (gameObject);
-                countingScript.numberOfObjects -= 1;
+                
 			}
 
 		}

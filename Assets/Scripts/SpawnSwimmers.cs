@@ -32,7 +32,7 @@ public class SpawnSwimmers : MonoBehaviour {
 		
 		if (numberOfObjects <= 4)
         {
-			swimmerStart = swimmerSpawn [Random.Range (0, swimmerSpawn.Length - 1)].transform.position;
+			swimmerStart = swimmerSpawn [Random.Range (0, swimmerSpawn.Length)].transform.position;
 			Instantiate(swimmer, swimmerStart, Quaternion.identity);
             numberOfObjects += 1;
         }
@@ -46,7 +46,7 @@ public class SpawnSwimmers : MonoBehaviour {
         {
             if (numberOfCans <= 2)
             {
-				canStart = CanSpawn [Random.Range (0, CanSpawn.Length - 1)].transform.position;
+				canStart = CanSpawn [Random.Range (0, CanSpawn.Length)].transform.position;
 				Instantiate(BeerCan, canStart, Quaternion.identity);
                 numberOfObjects += 1;
                 numberOfCans += 1;

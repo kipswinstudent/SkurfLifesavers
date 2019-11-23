@@ -93,8 +93,8 @@ public class GameRunner : MonoBehaviour {
 	private void DoGameOver()
 	{
 		Time.timeScale = 0;
-		//switch time off
-
+        //switch time off
+        isGameOver = true;
 		GOScreen.SetActive(true);
 		gameScreen.SetActive (false);
 		P1Final.text = scoreScript.P1Score.ToString();
