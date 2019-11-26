@@ -182,7 +182,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Player 1
 
-    A = Right
+    A = Left
 
     S = Up'
 --- !u!222 &144275074
@@ -261,9 +261,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Player 2
 
-    L = Left
+    L = Right
 
-    K = Up'
+    K = Up  '
 --- !u!222 &441014845
 CanvasRenderer:
   m_ObjectHideFlags: 0

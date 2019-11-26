@@ -13,7 +13,7 @@ public class GameRunner : MonoBehaviour {
 
 	public Text timerText;
 
-	bool isGameOver = false;
+	public bool isGameOver = false;
 
 	public GameObject gameScreen;
 	public GameObject GOScreen;
@@ -24,10 +24,6 @@ public class GameRunner : MonoBehaviour {
 
 	public AudioSource beachSounds;
 
-	bool pressA = false;
-	bool pressS = false;
-	bool pressK = false;
-	bool pressL = false;
 
 	// Use this for initialization
 	void Start () {
@@ -41,9 +37,15 @@ public class GameRunner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown) {
-			timeTilQuit = Time.time + idleTimer;
+		if (!isGameOver) {
+			if (Input.anyKeyDown) {
+				timeTilQuit = Time.time + idleTimer;
+			}
+			if (Time.time > timeTilQuit) {
+				SceneManager.LoadScene (0);
+			}
 		}
+
 
 		int min = Mathf.FloorToInt (GameTime / 60);
 		int sec = Mathf.FloorToInt (GameTime % 60);
@@ -54,30 +56,12 @@ public class GameRunner : MonoBehaviour {
             timerText.text = (min + ":" + sec);
         }
         
-
-		if (Time.time > timeTilQuit) {
-			SceneManager.LoadScene (0);
-		}
-
-		if (Time.time > gameOverTime) {
+		if (Time.time > gameOverTime && !isGameOver) {
 			DoGameOver ();
 		}
 
 		if (isGameOver) {
-			if(Input.GetKeyDown(KeyCode.A)){
-				pressA = true;
-			}
-			if(Input.GetKeyDown(KeyCode.S)){
-				pressS = true;
-			}
-			if(Input.GetKeyDown(KeyCode.K)){
-				pressK = true;
-			}
-			if(Input.GetKeyDown(KeyCode.L)){
-				pressL = true;
-			}
-
-			if (pressA && pressS && pressK && pressL) {
+			if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.L)) {
 				SceneManager.LoadScene (0);
 			}
 		}
@@ -108,8 +92,6 @@ public class GameRunner : MonoBehaviour {
 		if (scoreScript.P1Score == scoreScript.P2Score) {
 			winner.text = "it's a draw!!";
 		}
-		if (Input.anyKeyDown) {
-			SceneManager.LoadScene(0);
-		}
+
 	}
 }

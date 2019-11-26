@@ -23,30 +23,36 @@ public class PlayerController : MonoBehaviour {
 	LifePreserverController RingScript;
 	bool buttonsPressed = false;
 
+	GameRunner gameScript;
+	public GameObject GameRunner;
+
 	// Use this for initialization
 	void Start () {
 		RingScript = LifePreserver.GetComponent<LifePreserverController> ();
 		thisSR = GetComponent<SpriteRenderer> ();
+		gameScript = GameRunner.GetComponent<GameRunner> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-
-		if (!disableMovement) {
-			if (Input.GetKey (KeyCode.A)) {
-				Vector3 temp = transform.position;
-				temp.x -= speed;
-				transform.position = temp;
-				buttonsPressed = true;
-			}
-			if (Input.GetKey (KeyCode.S)) {
-				Vector3 temp = transform.position;
-				temp.y += speed;
-				transform.position = temp;
-				buttonsPressed = true;
+		if (!gameScript.isGameOver) {
+			if (!disableMovement) {
+				if (Input.GetKey (KeyCode.A)) {
+					Vector3 temp = transform.position;
+					temp.x -= speed;
+					transform.position = temp;
+					buttonsPressed = true;
+				}
+				if (Input.GetKey (KeyCode.S)) {
+					Vector3 temp = transform.position;
+					temp.y += speed;
+					transform.position = temp;
+					buttonsPressed = true;
+				}
 			}
 		}
+
 			
 		if (transform.position.y > Upper) {
 			Vector3 temp = transform.position;

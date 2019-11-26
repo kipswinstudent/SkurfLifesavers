@@ -22,29 +22,36 @@ public class Player2Controller : MonoBehaviour {
 	public Vector3 home;
 	LifePreserverController RingScript;
 
+	GameRunner gameScript;
+	public GameObject GameRunner;
+
 	void Start () {
 		RingScript = LifePreserver2.GetComponent<LifePreserverController> ();
 		thisSR = GetComponent<SpriteRenderer> ();
+		gameScript = GameRunner.GetComponent<GameRunner> ();
 	}
 
     void Update()
     {
-		if (!disableMovement) {
-			if (Input.GetKey(KeyCode.L))
-			{
-				Vector3 temp = transform.position;
-				temp.x += speed;
-				transform.position = temp;
-				buttonsPressed = true;
-			}
-			if (Input.GetKey(KeyCode.K))
-			{
-				Vector3 temp = transform.position;
-				temp.y += speed;
-				transform.position = temp;
-				buttonsPressed = true;
+		if (!gameScript.isGameOver) {
+			if (!disableMovement) {
+				if (Input.GetKey(KeyCode.L))
+				{
+					Vector3 temp = transform.position;
+					temp.x += speed;
+					transform.position = temp;
+					buttonsPressed = true;
+				}
+				if (Input.GetKey(KeyCode.K))
+				{
+					Vector3 temp = transform.position;
+					temp.y += speed;
+					transform.position = temp;
+					buttonsPressed = true;
+				}
 			}
 		}
+
 
         if (transform.position.y > Upper)
         {
