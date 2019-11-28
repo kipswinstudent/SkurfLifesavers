@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
 	GameRunner gameScript;
 	public GameObject GameRunner;
+	public AudioSource throwSound;
 
 	// Use this for initialization
 	void Start () {
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour {
 			checking = false;
 			disableMovement = true;
 			thisSR.enabled = false;
+			throwSound.Play ();
 		}
 	}
 

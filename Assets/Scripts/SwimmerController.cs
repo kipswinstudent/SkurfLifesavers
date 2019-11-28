@@ -18,6 +18,7 @@ public class SwimmerController : MonoBehaviour {
 	float timeTilFade;
 	bool swimmerhit = false;
 	public AudioSource ringHit;
+	public AudioSource angry;
 
 	bool hittingSwimmer;
     public GameObject collisionChecker;
@@ -81,28 +82,10 @@ public class SwimmerController : MonoBehaviour {
             Debug.Log("The way is blocked!");
         }
         
-		
 		transform.position = temp;
 		if (!swimmerhit) {
 			Invoke ("MoveSwimmer", 2);
 		}
-        //temp.x += swimAngle;
-        /*if (swimAngleNeg && temp.x < -4.7f) {
-			temp.x = -4.7f;
-			FlipDirection ();
-			/*swimAngle = -swimAngle;
-			Vector3 tempScale = transform.localScale;
-			tempScale.x = -1;
-			transform.localScale = tempScale;
-		}
-		if (!swimAngleNeg && temp.x > 4.7f) {
-			temp.x = 4.7f;
-			FlipDirection ();
-			/*swimAngle = -swimAngle;
-			Vector3 tempScale = transform.localScale;
-			tempScale.x = -1;
-			transform.localScale = tempScale;
-		}*/
     }
 
     public void FlipDirection()
@@ -114,20 +97,20 @@ public class SwimmerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
-		if (other.tag == "Ring" | other.tag == "Ring2") {
-			thisAnim.SetBool ("Hit", true);
-			swimmerhit = true;
-			timeTilFade = Time.time + hitTimer;
-			ringHit.Play ();
+		if (!swimmerhit) {
+			if (other.tag == "Ring" | other.tag == "Ring2") {
+				thisAnim.SetBool ("Hit", true);
+				swimmerhit = true;
+				timeTilFade = Time.time + hitTimer;
+				ringHit.Play ();
+				angry.Play ();
+			}
+			if (other.tag == "Ring") {
+				scoreScript.P1Score -= 1000;
+			}
+			if (other.tag == "Ring2") {
+				scoreScript.P2Score -= 1000;
+			}     
 		}
-        if (other.tag == "Ring") {
-            scoreScript.P1Score -= 1000;
-        }
-        if (other.tag == "Ring2") {
-            scoreScript.P2Score -= 1000;
-        }
-
-        //also need to work out a way to avoid overlapping swimmers and drowners
-       
 	}
 }

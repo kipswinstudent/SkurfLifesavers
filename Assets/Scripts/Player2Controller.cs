@@ -24,6 +24,7 @@ public class Player2Controller : MonoBehaviour {
 
 	GameRunner gameScript;
 	public GameObject GameRunner;
+	public AudioSource throwSound;
 
 	void Start () {
 		RingScript = LifePreserver2.GetComponent<LifePreserverController> ();
@@ -88,6 +89,7 @@ public class Player2Controller : MonoBehaviour {
 			checking = false;
 			disableMovement = true;
 			thisSR.enabled = false;
+			throwSound.Play ();
 		}
 	}
 
