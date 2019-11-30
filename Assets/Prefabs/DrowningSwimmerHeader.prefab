@@ -316,6 +316,7 @@ MonoBehaviour:
   swimmerSaved: {fileID: 1678904274428464}
   score: 1000
   drowningTimer: 8
+  halp: {fileID: 82098642182073532}
 --- !u!212 &212260056178483166
 SpriteRenderer:
   m_ObjectHideFlags: 1

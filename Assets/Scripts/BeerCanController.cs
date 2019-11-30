@@ -71,7 +71,7 @@ public class BeerCanController : MonoBehaviour {
         if (!saved) {
             if (other.tag == "Ring")
             {
-                Debug.Log("Can hit with ring!!");
+                
                 scoreScript.P1Score += score;
                 thisRenderer.sprite = savedCan;
                 fadeTimer = timeTilfade + Time.time;
@@ -79,7 +79,7 @@ public class BeerCanController : MonoBehaviour {
             }
             if (other.tag == "Ring2")
             {
-                Debug.Log("Can hit with ring!!");
+               
                 scoreScript.P2Score += score;
                 thisRenderer.sprite = savedCan;
                 fadeTimer = timeTilfade + Time.time;

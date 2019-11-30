@@ -14,6 +14,7 @@ public class DrowningSwimmer : MonoBehaviour {
 	public float drowningTimer;
 	float timeToDrown;
 	bool saved = false;
+    public AudioSource halp;
 
 
 	// Use this for initialization
@@ -55,19 +56,21 @@ public class DrowningSwimmer : MonoBehaviour {
         if (!saved) {
             if (other.tag == "Ring")
             {
-                Debug.Log("Hit with ring!!");
+                
                 swimmerDrowning.SetActive(false);
                 scoreScript.P1Score += score;
                 swimmerSaved.SetActive(true);
                 saved = true;
+                halp.Stop();
             }
             if (other.tag == "Ring2")
             {
-                Debug.Log("Hit with ring!!");
+               
                 swimmerDrowning.SetActive(false);
                 scoreScript.P2Score += score;
                 swimmerSaved.SetActive(true);
                 saved = true;
+                halp.Stop();
             }
         }
         
